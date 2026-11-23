@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZENOS</title>
+<style>
+*{box-sizing:border-box;margin:0;font-family:system-ui,sans-serif}
+body{background:#0b0b0f;color:#eee;padding:20px;max-width:480px;margin:auto}
+h1{color:#dc143c;margin-top:20px}.tag{color:#999;margin-bottom:20px}
+.card{background:#16161d;border:1px solid #2a2a35;border-radius:14px;padding:14px;margin-bottom:16px}
+.card img{width:100%;border-radius:10px;margin-bottom:10px}
+.btn{display:block;text-align:center;padding:12px;margin-top:8px;border-radius:10px;background:#dc143c;color:#fff;text-decoration:none;font-weight:bold}
+.btn.alt{background:#222;border:1px solid #dc143c}
+.note{color:#888;font-size:13px;margin:20px 0}
+</style></head><body>
+<h1>ZENOS</h1><p class="tag">Your Screen. Your Universe.</p>
+<div id="shop"></div>
+<p class="note">How it works: pay by UPI, send the screenshot on WhatsApp, get your download link in minutes.</p>
+<script>
+const UPI="yourreal@upi", WA="91yournumber";
+// ADD NEW PRODUCT = ONE LINE: [name, description, preview image, price]
+const products=[
+ ["Crimson Samurai","Wallpapers + icons + setup guide","previews/crimson1.jpg",99],
+];
+const shop=document.getElementById("shop");
+products.forEach(([n,d,img,p])=>{
+ const msg=encodeURIComponent("Hi! I paid Rs "+p+" for "+n+". Screenshot attached.");
+ shop.innerHTML+=`<div class="card"><img src="${img}" alt="${n}">
+ <h2>${n}</h2><p>${d}</p>
+ <a class="btn" href="upi://pay?pa=${UPI}&pn=ZENOS&am=${p}&cu=INR&tn=${encodeURIComponent(n)}">Pay Rs ${p} via UPI</a>
+ <a class="btn alt" href="https://wa.me/${WA}?text=${msg}">Send screenshot on WhatsApp</a></div>`;
+});
+</script></body></html>
